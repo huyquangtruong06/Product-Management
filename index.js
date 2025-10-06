@@ -5,6 +5,10 @@ const port = process.env.PORT; // port which server will use to run, http://loca
 
 // embedded
 const route = require("./routes/client/index.route.js");
+
+const database = require("./config/database.js");
+database.connect();
+
 // "views" is the default option name in Express, used to refer to the folder containing the interface files.
 // "./views" is the path to that directory, The views folder is at the same level as the index.js file.
 app.set("views", "./views");
