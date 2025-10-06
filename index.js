@@ -12,6 +12,8 @@ app.set("views", "./views");
 // we choose "pug" → means the .pug files in the views folder will be used for rendering.
 app.set("view engine", "pug");
 
+app.use(express.static("public")); // setup static files (css, js, images...)
+
 // Routes.
 route(app);
 
