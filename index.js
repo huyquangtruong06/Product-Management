@@ -5,9 +5,14 @@ const port = process.env.PORT; // port which server will use to run, http://loca
 
 // embedded
 const route = require("./routes/client/index.route.js");
+const routeAdmin = require("./routes/admin/index.route.js");
 
 const database = require("./config/database.js");
 database.connect();
+
+const systemConfig = require("./config/system.js");
+// App Locals Variable
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
 // "views" is the default option name in Express, used to refer to the folder containing the interface files.
 // "./views" is the path to that directory, The views folder is at the same level as the index.js file.
@@ -20,7 +25,7 @@ app.use(express.static("public")); // setup static files (css, js, images...)
 
 // Routes.
 route(app);
-
+routeAdmin(app);
 // define a route for GET method at original URL '/'
 // when u access address http://localhost:1235/, callback function (req, res) => { ... } will be called.
 // req: (request) Contains information requested from the client (browser).
