@@ -1,6 +1,6 @@
 const Products = require("../../models/product.model.js");
 
-// [GET ] /admin/products
+// [GET] /admin/products
 module.exports.index = async (req, res) => {
   // console.log(req.query.status);
   let filterStatus = [
@@ -26,6 +26,13 @@ module.exports.index = async (req, res) => {
     obj.status = req.query.status;
   }
 
+  let keyword = "";
+  if (req.query.keyword) {
+    keyword = req.query.keyword;
+    const regrex = new RegExp(keyword, "i");
+    obj.title = regrex;
+  }
+
   const products = await Products.find(obj);
   // console.log(products);
 
@@ -33,5 +40,6 @@ module.exports.index = async (req, res) => {
     title: "Product Management Admin",
     products: products,
     filterStatus: filterStatus,
+    keyword: keyword,
   });
 };
