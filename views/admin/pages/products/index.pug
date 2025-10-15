@@ -1,5 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
 
 block main
   h1 Product Management Page
@@ -11,21 +13,7 @@ block main
       div(class="d-flex flex-wrap gap-2")
         +filter-status(filterStatus)
       div
-        form(id="form-search")
-          .input-group
-            input(
-              type="text"
-              name="keyword"
-              class="form-control"
-              placeholder="Nhập từ khóa..."
-              value=keyword
-            )
-            button(
-              class="btn btn-success"
-              type="submit"
-            ) Tìm kiếm
-
-
+        +search(keyword)
 
   .card.mb-3
   .card-header Danh sách sản phẩm
@@ -60,19 +48,4 @@ block main
             td
               button.btn.btn-warning.btn-sm Edit
               button.btn.btn-danger.btn-sm Delete
-      //- tr
-      //-   td 2
-      //-   td
-      //-     img(
-      //-       src="https://tse2.mm.bing.net/th/id/OIP.o8Vimo2QgVZ3OaYqqQkQCAHaE8?"
-      //-       alt="Product Image"
-      //-       width="100"
-      //-       height="auto"
-      //-     )
-      //-   td Apple MacBook Air 2023
-      //-   td $1,600
-      //-   td
-      //-     a.badge.bg-danger(href="#") Inactive
-      //-   td
-      //-     button.btn.btn-warning.btn-sm Edit
-      //-     button.btn.btn-danger.btn-sm Delete
+    +pagination(pagination)

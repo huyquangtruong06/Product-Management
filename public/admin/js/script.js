@@ -34,3 +34,24 @@ if (formSearch) {
     window.location.href = url.href; // assign a new url for old url
   });
 }
+
+const listButtonPagination = document.querySelectorAll("[button-pagination]");
+// console.log(listButtonPagination);
+if (listButtonPagination) {
+  let url = new URL(window.location.href); // a new url
+
+  for (let i = 0; i < listButtonPagination.length; i++) {
+    listButtonPagination[i].addEventListener("click", () => {
+      const page = listButtonPagination[i].getAttribute("button-pagination");
+      // console.log(indexPage);
+
+      if (page) {
+        url.searchParams.set("page", page);
+      } else {
+        url.searchParams.delete("page");
+      }
+      //   console.log(url.href);
+      window.location.href = url.href; // assign a new url for old url
+    });
+  }
+}
