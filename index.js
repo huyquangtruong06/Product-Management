@@ -1,8 +1,10 @@
 const express = require("express"); // import library Express
+const methodOverride = require("method-override");
 require("dotenv").config(); // import library dotenv to read file .env
 const app = express(); // Create a application Express (app object).
 const port = process.env.PORT; // port which server will use to run, http://localhost:1235
 
+app.use(methodOverride("_method"));
 // embedded
 const route = require("./routes/client/index.route.js");
 const routeAdmin = require("./routes/admin/index.route.js");

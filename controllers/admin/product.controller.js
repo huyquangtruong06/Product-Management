@@ -12,6 +12,8 @@ module.exports.index = async (req, res) => {
   let obj = {
     deleted: false,
   };
+  // http://localhost:1235/admin/products/?status=inactive
+  // req.query get all element after "?"
   if (req.query.status) {
     obj.status = req.query.status;
   }
@@ -48,4 +50,20 @@ module.exports.index = async (req, res) => {
     keyword: objectSearch.keyword,
     pagination: objPagination,
   });
+};
+
+// [GET] /admin/products/change-status/:status/:id
+module.exports.changeStatus = async (req, res) => {
+  // http://localhost:1235/admin/products/change-status/:status/:id
+  // with url above , use req.params
+  // :status : truyền động.
+
+  // console.log(req.params);
+  const status = req.params.status;
+  const id = req.params.id;
+
+  await Products.updateOne({ _id: id }, { status: status });
+
+  const previousPage = req.get("referer") || "/admin/products";
+  res.redirect(previousPage);
 };

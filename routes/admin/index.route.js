@@ -1,5 +1,4 @@
 const systemConfig = require("../../config/system.js");
-
 const dashboardRoutes = require("./dashboard.route.js");
 const productRoutes = require("./products.route.js");
 

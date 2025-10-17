@@ -41,11 +41,30 @@ block main
             td #{item.title}
             td $#{item.price}
             td
-              if item.status == 'active'
-                a.badge.bg-success(href="#") Active
+              if item.status == "active"
+                a.badge.bg-success(
+                  href="javascript:;"
+                  button-change-status
+                  data-status=item.status
+                  data-id=item.id
+                ) Active
               else
-                a.badge.bg-danger(href="#") Inactive
+                a.badge.bg-danger(
+                  href="javascript:;"
+                  button-change-status
+                  data-status=item.status
+                  data-id=item.id
+                ) Inactive
             td
               button.btn.btn-warning.btn-sm Edit
               button.btn.btn-danger.btn-sm Delete
+
     +pagination(pagination)
+    form(
+      action=""
+      method="POST"
+      id="form-change-status"
+      data-path=`${prefixAdmin}/products/change-status`
+      ) 
+
+    script(src="/admin/js/product.js") 
